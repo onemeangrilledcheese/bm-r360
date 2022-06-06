@@ -1,6 +1,8 @@
 {
+  "/[[...slug]]": "pages/[[...slug]].js",
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
-  "/_error": "pages/_error.js",
-  "/[[...slug]]": "pages/[[...slug]].js"
+  "/api/exit-preview": "pages/api/exit-preview.js",
+  "/api/preview": "pages/api/preview.js",
+  "/_error": "pages/_error.js"
 }
