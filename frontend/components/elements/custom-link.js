@@ -6,8 +6,8 @@ const CustomLink = ({ link, children, childCloseSelf }) => {
   const isInternalLink = link.url.startsWith("/")
 
   const handleClick = () => {
-    if (typeof childCloseSelf == 'function') {
-      childCloseSelf();
+    if (typeof childCloseSelf == "function") {
+      childCloseSelf()
     }
   }
 
@@ -15,7 +15,6 @@ const CustomLink = ({ link, children, childCloseSelf }) => {
   if (isInternalLink) {
     return (
       <Link href={link.url}>
-
         <a onClick={() => handleClick()}>{children}</a>
       </Link>
     )
@@ -43,7 +42,7 @@ CustomLink.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  childCloseSelf: PropTypes.func
+  childCloseSelf: PropTypes.func,
 }
 
 export default CustomLink

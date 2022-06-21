@@ -23,18 +23,22 @@ const Navbar = ({ navbar, pageContext }) => {
         <div className="container flex flex-row items-center justify-between">
           {/* Content aligned to the left */}
           <div className="flex flex-row items-center">
-            {navbar.logo && 
+            {navbar.logo && (
               <Link href="/">
                 <a className="h-8 w-32">
                   <NextImage width="120" height="33" media={navbar.logo} />
                 </a>
               </Link>
-            }
+            )}
             {/* List of links on desktop */}
             <ul className="hidden list-none md:flex flex-row gap-4 items-baseline ml-10">
               {navbar.links.map((navLink) => (
                 <li key={navLink.id}>
-                  <CustomLink link={navLink} locale={router.locale} childCloseSelf={null}>
+                  <CustomLink
+                    link={navLink}
+                    locale={router.locale}
+                    childCloseSelf={null}
+                  >
                     <div className="hover:text-gray-900 px-2 py-1">
                       {navLink.text}
                     </div>

@@ -2,7 +2,7 @@ import App from "next/app"
 import Head from "next/head"
 import ErrorPage from "next/error"
 import { useState, useEffect } from "react"
-import { Router } from 'next/dist/client/router'
+import { Router } from "next/dist/client/router"
 import { DefaultSeo } from "next-seo"
 import { getStrapiMedia } from "utils/media"
 import { getGlobalData } from "utils/api"
@@ -22,16 +22,16 @@ const MyApp = ({ Component, pageProps }) => {
   }
 
   //@todo decide how we want to transition to new page
-  Router.events.on('routeChangeStart', () => {
-    console.log('routeChangeStart')
+  Router.events.on("routeChangeStart", () => {
+    console.log("routeChangeStart")
     setLoading(true)
   })
-  Router.events.on('routeChangeComplete', () => {
-    console.log('routeChangeComplete')
+  Router.events.on("routeChangeComplete", () => {
+    console.log("routeChangeComplete")
     setLoading(false)
   })
-  Router.events.on('routeChangeError', () => {
-    console.log('routeChangeError')
+  Router.events.on("routeChangeError", () => {
+    console.log("routeChangeError")
   })
 
   const { metadata, favicon, metaTitleSuffix } = global.attributes
