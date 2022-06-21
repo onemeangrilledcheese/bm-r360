@@ -28,7 +28,7 @@ const MobileNavMenu = ({ navbar, closeSelf }) => {
           <ul className="flex flex-col list-none gap-6 items-baseline text-xl mb-10">
             {navbar.links.map((navLink) => (
               <li key={navLink.id} className="block w-full">
-                <CustomLink link={navLink}>
+                <CustomLink link={navLink} childCloseSelf={closeSelf}>
                   <div className="hover:text-gray-900 py-6 flex flex-row justify-between items-center">
                     <span>{navLink.text}</span>
                     <MdChevronRight className="h-8 w-auto" />

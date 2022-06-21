@@ -2,14 +2,21 @@ import Link from "next/link"
 import PropTypes from "prop-types"
 import { linkPropTypes } from "utils/types"
 
-const CustomLink = ({ link, children }) => {
+const CustomLink = ({ link, children, childCloseSelf }) => {
   const isInternalLink = link.url.startsWith("/")
+
+  const handleClick = () => {
+    if (typeof childCloseSelf == 'function') {
+      childCloseSelf();
+    }
+  }
 
   // For internal links, use the Next.js Link component
   if (isInternalLink) {
     return (
       <Link href={link.url}>
-        <a>{children}</a>
+
+        <a onClick={() => handleClick()}>{children}</a>
       </Link>
     )
   }
@@ -36,6 +43,7 @@ CustomLink.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  childCloseSelf: PropTypes.func
 }
 
 export default CustomLink

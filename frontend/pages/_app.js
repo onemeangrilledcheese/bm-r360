@@ -1,7 +1,8 @@
 import App from "next/app"
 import Head from "next/head"
 import ErrorPage from "next/error"
-import { useRouter } from "next/router"
+import { useState, useEffect } from "react"
+import { Router } from 'next/dist/client/router'
 import { DefaultSeo } from "next-seo"
 import { getStrapiMedia } from "utils/media"
 import { getGlobalData } from "utils/api"
@@ -10,9 +11,28 @@ import "@/styles/index.css"
 const MyApp = ({ Component, pageProps }) => {
   // Extract the data we need
   const { global } = pageProps
+  const [isLoading, setLoading] = useState(false)
+
+  // useEffect(() =>{
+  //   setLoading(true)
+  // }, [])
+
   if (global == null) {
     return <ErrorPage statusCode={404} />
   }
+
+  //@todo decide how we want to transition to new page
+  Router.events.on('routeChangeStart', () => {
+    console.log('routeChangeStart')
+    setLoading(true)
+  })
+  Router.events.on('routeChangeComplete', () => {
+    console.log('routeChangeComplete')
+    setLoading(false)
+  })
+  Router.events.on('routeChangeError', () => {
+    console.log('routeChangeError')
+  })
 
   const { metadata, favicon, metaTitleSuffix } = global.attributes
 
@@ -47,7 +67,8 @@ const MyApp = ({ Component, pageProps }) => {
         }}
       />
       {/* Display the content */}
-      <Component {...pageProps} />
+      {isLoading && <h1>Loading... we need anim here</h1>}
+      {!isLoading && <Component {...pageProps} />}
     </>
   )
 }
